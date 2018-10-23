@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 import SuggestsList from './suggests-list'
+import AtomTag from '@schibstedspain/sui-atom-tag'
+import {X} from '@schibstedspain/sui-svgiconset'
 import cx from 'classnames'
 
 const DELTA_MOVE = 1
@@ -190,10 +192,40 @@ export default class FormAutocompleted extends Component {
     const formAutocompletedClassName = cx('sui-FormAutocompleted', {
       'is-collapsed': submit && collapsed
     })
+    const closeIcon = (
+      <svg viewBox="0 0 24 24">
+        <path
+          id="a"
+          d="M13.42 12l4.79-4.8a1 1 0 0 0-1.41-1.41L12 10.58 7.21 5.79A1 1 0 0 0 5.8 7.2l4.79 4.8-4.79 4.79a1 1 0 1 0 1.41 1.41L12 13.41l4.8 4.79a1 1 0 0 0 1.41-1.41L13.42 12z"
+        />
+      </svg>
+    )
+
     return (
       <div className="sui-FormAutocompleted-wrap">
         <div className={formAutocompletedClassName}>
           <div className="sui-FormAutocompleted-inputWrap">
+            <div className="sui-FormAutocompleted-input">
+              <close />
+              <AtomTag
+                label="Close Tag"
+                onClose={() => window.alert('close!')}
+                closeIcon={closeIcon}
+              />
+              <AtomTag
+                label="Close Tag"
+                onClose={() => window.alert('close!')}
+                closeIcon={
+                  <X
+                    size={10}
+                    fillColor="#000000"
+                    strokeColor="black"
+                    strokeWidth={0}
+                    svgClass="sui-SVGicon"
+                  />
+                }
+              />
+            </div>
             <input
               ref={node => {
                 this.input = node
